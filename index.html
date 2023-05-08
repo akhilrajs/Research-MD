@@ -38,7 +38,7 @@
     <script>
         async function search() {
             const keyword = document.getElementById('search').value;
-            const response = await fetch('https://raw.githubusercontent.com/akhilrajs/POSTERS/main/data.json');
+            const response = await fetch('https://github.com/akhilrajs/Research-MD/blob/main/data.json');
             const data = await response.json();
             let results = '<table><tr>';
             for (const key of Object.keys(data[0])) {
