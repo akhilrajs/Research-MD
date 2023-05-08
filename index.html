@@ -6,7 +6,7 @@
         body {
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg?w=996&t=st=1683548316~exp=1683548916~hmac=4d7cd71b6c82d3a1d72fbb814f5149b3a49eabd3e0dcfd7825e6c1ef28c9a7b9');
+            background-image: url('https://img.freepik.com/free-photo/gray-texture_1253-153.jpg?w=996&t=st=1683549678~exp=1683550278~hmac=bf1c396c9b05f9fecb6e624238e36501fdf23767139fb552708f883bae90c77b');
             background-size: cover;
         }
         table {
@@ -14,7 +14,7 @@
             margin: 20px auto 0 auto;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #0000FF;
             color: white;
         }
         th, td {
@@ -27,10 +27,14 @@
         tr:hover {
             background-color: #ddd;
         }
-        #search {
+        #search, button {
             font-size: 20px;
             padding: 10px 20px;
             border-radius: 5px;
+        }
+        .no-results {
+            font-size: 24px;
+            color: red;
         }
     </style>
 </head>
@@ -43,13 +47,14 @@
     <script>
         async function search() {
             const keyword = document.getElementById('search').value;
-            const response = await fetch('https://raw.githubusercontent.com/akhilrajs/Research-MD/main/data.json');
+            const response = await fetch('https://github.com/akhilrajs/Research-MD/blob/main/data.json');
             const data = await response.json();
             let results = '<table><tr>';
             for (const key of Object.keys(data[0])) {
                 results += `<th>${key}</th>`;
             }
             results += '</tr>';
+            let foundResults = false;
             for (const item of data) {
                 let found = false;
                 for (const [key, value] of Object.entries(item)) {
@@ -59,6 +64,7 @@
                     }
                 }
                 if (found) {
+                    foundResults = true;
                     results += '<tr>';
                     for (const [key, value] of Object.entries(item)) {
                         results += `<td>${value}</td>`;
@@ -67,6 +73,11 @@
                 }
             }
             results += '</table>';
+            
+            if (!foundResults) {
+                results = '<div class="no-results">No matches found</div>';
+            }
+
             document.getElementById('results').innerHTML = results;
         }
 
