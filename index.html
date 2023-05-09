@@ -87,7 +87,7 @@
     <div id="password-box" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
             <h2 style="color: white">Please enter the password:</h2>
-            <input type="password" id="password" style="font-size: 16px; padding: 10px; border-radius: 5px; border: none; outline: none;"><br><br>
+            <input type="password" id="password" onkeydown="if(event.keyCode==13) checkPassword()" style="font-size: 16px; padding: 10px; border-radius: 5px; border: none; outline: none;"><br><br>
             <button onclick="checkPassword()" style="font-size: 16px; padding: 10px 20px; border-radius: 5px; background-color: #3a3b3c; color: white; border: none; outline: none;">Submit</button>
             <div id="password-message" style="font-size: 16px; color: red;"></div>
         </div>
