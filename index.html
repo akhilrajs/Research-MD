@@ -133,10 +133,49 @@
       <div class="heading">Research MD Database</div>
     </div>
     <input type="text" id="search" placeholder="Enter search keyword">
+    <select id="dropdownList"></select>
     <button onclick="search()">Search</button>
     <div id="results"></div>
 
     <script>
+        fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        // Get references to search input and dropdown list
+        const searchInput = document.getElementById('searchInput');
+        const dropdownList = document.getElementById('dropdownList');
+
+        // Create function to generate dropdown list
+        function generateDropdownList(matches) {
+          // Clear previous options
+          dropdownList.innerHTML = '';
+
+          // Add new options
+          for (let i = 0; i < matches.length; i++) {
+            const option = document.createElement('option');
+            option.value = matches[i].name;
+            dropdownList.appendChild(option);
+          }
+        }
+
+        // Add event listener to search input
+        searchInput.addEventListener('input', () => {
+          const searchTerm = searchInput.value.toLowerCase();
+          const matches = [];
+
+          // Find matches in data
+          for (let i = 0; i < data.length; i++) {
+            const name = data[i].name.toLowerCase();
+
+            if (name.includes(searchTerm)) {
+              matches.push(data[i]);
+            }
+          }
+
+          // Generate dropdown list
+          generateDropdownList(matches);
+        });
+      });
         function checkPassword() {
             var password = document.getElementById("password").value;
             if (password == "5555") {
