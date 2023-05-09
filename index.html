@@ -132,29 +132,11 @@
     <div class="heading-container">
       <div class="heading">Research MD Database</div>
     </div>
-    <label for="search">Search:</label>
-    <input type="text" id="search" list="suggestions" onkeyup="search()">
-    <datalist id="suggestions"></datalist>
+    <input type="text" id="search" placeholder="Enter search keyword">
+    <button onclick="search()">Search</button>
+    <div id="results"></div>
 
     <script>
-        function search() {
-        const input = document.getElementById("search").value.toLowerCase();
-        fetch("data.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const suggestions = data.filter((item) =>
-              item.toLowerCase().startsWith(input)
-            );
-            const datalist = document.getElementById("suggestions");
-            datalist.innerHTML = "";
-            suggestions.forEach((suggestion) => {
-              const option = document.createElement("option");
-              option.value = suggestion;
-              datalist.appendChild(option);
-            });
-          })
-          .catch((error) => console.error(error));
-      }
         function checkPassword() {
             var password = document.getElementById("password").value;
             if (password == "5555") {
@@ -210,4 +192,3 @@
 </script>
 </body>
 </html>
-
