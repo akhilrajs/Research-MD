@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Research MD Database</title>
-    <h1 class="header">Research MD Database</h1>
     <style>
-        .header {
-  background-color: #ffcc00;
-  border-radius: 25px;
-  padding: 10px 20px;
-  color: #333;
-  display: inline-block;
-  animation-name: example;
-  animation-duration: 2s;
-}
-
-@keyframes example {
-  from {transform: scale(0.8);}
-  to {transform: scale(1);}
-}
-
+        .heading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+      }
+      
+      .heading {
+        background-color: #000000;
+        color: #FFFFFF;
+        font-size: 48px;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 10px;
+        animation: fadeIn 1s;
+        animation-fill-mode: both;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
         body {
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
@@ -108,7 +115,9 @@
             <div id="password-message" style="font-size: 16px; color: red;"></div>
         </div>
     </div>
-    <h1>Research MD Database</h1>
+    <div class="heading-container">
+      <div class="heading">Research MD Database</div>
+    </div>
     <input type="text" id="search" placeholder="Enter search keyword">
     <button onclick="search()">Search</button>
     <div id="results"></div>
