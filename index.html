@@ -132,9 +132,9 @@
     <div class="heading-container">
       <div class="heading">Research MD Database</div>
     </div>
-    <input type="text" id="search" placeholder="Enter search keyword">
-    <button onclick="search()">Search</button>
-    <div id="results"></div>
+    <label for="search">Search:</label>
+    <input type="text" id="search" list="suggestions" onkeyup="search()">
+    <datalist id="suggestions"></datalist>
 
     <script>
         function search() {
