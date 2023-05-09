@@ -137,6 +137,24 @@
     <div id="results"></div>
 
     <script>
+        function search() {
+        const input = document.getElementById("search").value.toLowerCase();
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const suggestions = data.filter((item) =>
+              item.toLowerCase().startsWith(input)
+            );
+            const datalist = document.getElementById("suggestions");
+            datalist.innerHTML = "";
+            suggestions.forEach((suggestion) => {
+              const option = document.createElement("option");
+              option.value = suggestion;
+              datalist.appendChild(option);
+            });
+          })
+          .catch((error) => console.error(error));
+      }
         function checkPassword() {
             var password = document.getElementById("password").value;
             if (password == "5555") {
